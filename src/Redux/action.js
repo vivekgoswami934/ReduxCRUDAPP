@@ -59,24 +59,28 @@ const statusTodoError = () => {
 };
 
 const getTodos = (dispatch) => {
+  console.log("gettods calling")
   dispatch(getTodosRequest()); // isLoadig  -> true
   return axios
     .get("https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud")
     .then((r) => dispatch(getTodosSuccess(r.data))) // getTodos(payload)
     .catch((e) => {
       dispatch(getTodosError());
-    }); 
+    });
 };
 
 const addTodo = (payload) => (dispatch) => {
   if (payload) {
     const payloadObj = {
-      title: payload,  
+      title: payload,
       status: false,
     };
     dispatch(addTodoRequest());
     return axios
-      .post("https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud", payloadObj)
+      .post(
+        "https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud",
+        payloadObj
+      )
       .then((r) => {
         dispatch(addTodoSuccess());
       })
@@ -91,7 +95,10 @@ const statusTodo =
   (dispatch) => {
     dispatch(statusTodoRequest());
     return axios
-      .patch(`https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`, { status: status })
+      .patch(
+        `https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`,
+        { status: status }
+      )
       .then((r) => {
         dispatch(statusTodoSuccess());
       })
@@ -103,7 +110,9 @@ const statusTodo =
 const deleteTodo = (id) => async (dispatch) => {
   dispatch({ type: "delete_request" });
   return await axios
-    .delete(`https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`)
+    .delete(
+      `https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`
+    )
     .then((r) => {
       dispatch({ type: "delete_success" });
     })

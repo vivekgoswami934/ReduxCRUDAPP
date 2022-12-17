@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Button, Center, Flex, Input } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, getTodos } from "../Redux/action";
@@ -14,11 +14,23 @@ const TodoInput = () => {
   };
 
   return (
-    <div className="inputBox">
-      <input value={todo} placeholder="Write your Todo..." onChange={(e) => setTodo(e.target.value)} />
-      <button onClick={() => handleAdd()}>Add Todo</button>
-    </div>
+    <Center >
+      <Flex padding="5" >
+        <Center>
+          <Input
+            size="lg"
+            variant="flushed"
+            value={todo}
+            placeholder="Write your Todo..."
+            onChange={(e) => setTodo(e.target.value)}
+          />
+          <Button colorScheme="whatsapp" onClick={() => handleAdd()}>
+            Add Todo
+          </Button>
+        </Center>
+      </Flex>
+    </Center>
   );
 };
 
-export default TodoInput; 
+export default TodoInput;
