@@ -61,7 +61,7 @@ const statusTodoError = () => {
 const getTodos = (dispatch) => {
   dispatch(getTodosRequest()); // isLoadig  -> true
   return axios
-    .get("http://localhost:8080/todos")
+    .get("https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud")
     .then((r) => dispatch(getTodosSuccess(r.data))) // getTodos(payload)
     .catch((e) => {
       dispatch(getTodosError());
@@ -76,7 +76,7 @@ const addTodo = (payload) => (dispatch) => {
     };
     dispatch(addTodoRequest());
     return axios
-      .post("http://localhost:8080/todos", payloadObj)
+      .post("https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud", payloadObj)
       .then((r) => {
         dispatch(addTodoSuccess());
       })
@@ -91,7 +91,7 @@ const statusTodo =
   (dispatch) => {
     dispatch(statusTodoRequest());
     return axios
-      .patch(`http://localhost:8080/todos/${id}`, { status: status })
+      .patch(`https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`, { status: status })
       .then((r) => {
         dispatch(statusTodoSuccess());
       })
@@ -103,7 +103,7 @@ const statusTodo =
 const deleteTodo = (id) => async (dispatch) => {
   dispatch({ type: "delete_request" });
   return await axios
-    .delete(`http://localhost:8080/todos/${id}`)
+    .delete(`https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud/${id}`)
     .then((r) => {
       dispatch({ type: "delete_success" });
     })
