@@ -35,7 +35,7 @@ const Todos = () => {
       <TodoInput />
 
       {todos.length > 0 &&
-        todos?.map((item, id) => {
+        todos?.reverse().map((item, id) => {
           return <Row key={id} data={item} rowID={id} />;
         })}
     </Box>
