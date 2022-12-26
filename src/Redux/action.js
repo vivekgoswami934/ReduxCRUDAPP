@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
+const API_URL = "https://good-puce-caterpillar-boot.cyclic.app";
+
 const getTodosRequest = () => {
   return {
     type: types.GET_TODOS_REQUEST,
@@ -59,7 +61,7 @@ const statusTodoError = () => {
 };
 
 const getTodos = (dispatch) => {
-  console.log("gettods calling")
+  console.log("gettods calling");
   dispatch(getTodosRequest()); // isLoadig  -> true
   return axios
     .get("https://good-puce-caterpillar-boot.cyclic.app/todosreduxcrud")
@@ -90,6 +92,8 @@ const addTodo = (payload) => (dispatch) => {
   }
 };
 
+
+
 const statusTodo =
   ({ id, status }) =>
   (dispatch) => {
@@ -119,6 +123,23 @@ const deleteTodo = (id) => async (dispatch) => {
     .catch((e) => {
       dispatch({ type: "delete_error" });
     });
+};
+
+export const updateTodo = (payload) => async (dispatch) => {
+  const { id } = payload;
+  console.log("id at action",id)
+  dispatch({ type: types.UPDATE_TODO_REQUEST });
+  try {
+    const res = await axios.put(`${API_URL}/todosreduxcrud/${id}`, payload );
+    console.log(res)
+    dispatch({ type: types.UPDATE_TODO_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({ type: types.UPDATE_TODO_ERROR });
+    console.log(
+      "Error while calling updateTodo API at frontend ",
+      error.message
+    );
+  }
 };
 
 export { getTodos, addTodo, statusTodo, deleteTodo };

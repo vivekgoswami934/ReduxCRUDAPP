@@ -31,6 +31,12 @@ const reducer = (oldState = initialState, actionObj) => {
       return { ...oldState, isLoading: false };
     case types.STATUS_TODO_ERROR:
       return { ...oldState, isLoading: false, isError: true };
+    case types.UPDATE_TODO_REQUEST:
+      return { ...oldState, isLoading: true, isError: true };
+    case types.UPDATE_TODO_SUCCESS:
+      return { ...oldState, isLoading: false, isError: false };
+    case types.UPDATE_TODO_ERROR:
+      return { ...oldState, isLoading: false, isError: true };
     default:
       return oldState; 
   }

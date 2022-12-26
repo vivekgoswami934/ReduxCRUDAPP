@@ -19,7 +19,11 @@ const Todos = () => {
   useEffect(() => {
     dispatch(getTodos);
     console.log("called");
-  }, [dispatch]);
+  }, []);
+
+  const renderData = () => {
+    dispatch(getTodos);
+  }
 
   if (isLoading) {
     return <Loader />;
@@ -36,7 +40,7 @@ const Todos = () => {
 
       {todos.length > 0 &&
         todos?.reverse().map((item, id) => {
-          return <Row key={id} data={item} rowID={id} />;
+          return <Row key={id} data={item} rowID={id} renderData={renderData} />;
         })}
     </Box>
   );
