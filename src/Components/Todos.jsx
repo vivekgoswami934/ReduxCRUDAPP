@@ -1,9 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodos } from "../Redux/action";
 import Loader from "./Loader";
+import MyButton from "./MyButton";
 import Row from "./Row";
 import TodoInput from "./TodoInput";
 
@@ -15,6 +16,8 @@ const Todos = () => {
   // store is object and we can destructure
   // const isLoading = useSelector((store) => store.isLoading);
   // console.log(todos,isLoading)
+  const done = todos?.filter((e) => e.status == true);
+  const notDone = todos?.filter((e) => e.status == false);
 
   useEffect(() => {
     dispatch(getTodos);
@@ -23,7 +26,7 @@ const Todos = () => {
 
   const renderData = () => {
     dispatch(getTodos);
-  }
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -36,11 +39,23 @@ const Todos = () => {
           Todos...
         </Text>
       </Box>
+      <Flex
+        justifyContent="space-around"
+        mt="3"
+        p="3"
+        borderBottom="2px solid whitesmoke"
+      >
+        <MyButton status={"Total"} num={todos.length} color="gray" />
+        <MyButton status={"Completed"} num={done.length} color="green" />
+        <MyButton status={"Not Completed"} num={notDone.length} color="pink" />
+      </Flex>
       <TodoInput />
 
       {todos.length > 0 &&
         todos?.reverse().map((item, id) => {
-          return <Row key={id} data={item} rowID={id} renderData={renderData} />;
+          return (
+            <Row key={id} data={item} rowID={id} renderData={renderData} />
+          );
         })}
     </Box>
   );

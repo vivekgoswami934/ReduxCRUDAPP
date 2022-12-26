@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import { Button, Center, Flex, Input } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -25,7 +26,7 @@ const TodoInput = () => {
             onChange={(e) => setTodo(e.target.value)}
           />
           <Button colorScheme="whatsapp" onClick={() => handleAdd()}>
-            Add Todo
+            <AddIcon  color="white" />
           </Button>
         </Center>
       </Flex>

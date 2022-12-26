@@ -22,7 +22,8 @@ const Edit = ({ data, editShowData , renderData }) => {
     <form onSubmit={editFunction}>
       <Input
         variant="filled"
-        colorScheme="gray.100"
+        textAlign="center"
+        colorScheme="gray.200"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />

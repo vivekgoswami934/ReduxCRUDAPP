@@ -1,3 +1,4 @@
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Flex, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -36,7 +37,7 @@ const Row = ({ data, rowID , renderData }) => {
         <Center flex="4">{editShow ? <Text> {title}</Text> : <Edit data={data} editShowData={editShowData} renderData={renderData}  />}</Center>
         <Center flex="2">
           <Button colorScheme="blue" onClick={() => editShowData()}>
-            Edit
+            <EditIcon />
           </Button>
         </Center>
         <Center flex="2">
@@ -49,7 +50,7 @@ const Row = ({ data, rowID , renderData }) => {
         </Center>
         <Center flex="2">
           <Button colorScheme="red" onClick={() => handleDelete(id)}>
-            Delete
+          <DeleteIcon/>
           </Button>
         </Center>
        
