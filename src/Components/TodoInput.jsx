@@ -13,9 +13,10 @@ const TodoInput = () => {
     //call the getTodos function to fetch all the data from db.json
     dispatch(addTodo(todo)).then(() => dispatch(getTodos));
   };
+  const abc = "rgba(10, 10, 13, 0.25) 0px 10px 2px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset"
 
   return (
-    <Center >
+    <Center boxShadow={abc} >
       <Flex padding="5" >
         <Center>
           <Input

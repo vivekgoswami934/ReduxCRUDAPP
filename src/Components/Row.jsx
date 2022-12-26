@@ -33,8 +33,8 @@ const Row = ({ data, rowID , renderData }) => {
   return (
     <Box key={id} boxShadow={shadow} p="1" mb="20px">
       <Flex justifyContent="space-evenly">
-        <Center flex="1">{rowID + 1}</Center>
-        <Center flex="4">{editShow ? <Text> {title}</Text> : <Edit data={data} editShowData={editShowData} renderData={renderData}  />}</Center>
+        <Center flex="1"><Text fontWeight="bold" >{rowID + 1}</Text> </Center>
+        <Center flex="4">{editShow ? <Text fontWeight="bold" > {title}</Text> : <Edit data={data} editShowData={editShowData} renderData={renderData}  />}</Center>
         <Center flex="2">
           <Button colorScheme="blue" onClick={() => editShowData()}>
             <EditIcon />
