@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { deleteTodo, getTodos, statusTodo } from "../Redux/action";
 import Edit from "./Edit";
 
-const Row = ({ data, rowID , renderData }) => {
+const Row = ({ data, rowID, renderData }) => {
   const dispatch = useDispatch();
   const { title, status, id } = data;
   const [editShow, setEditShow] = useState(true);
@@ -29,12 +29,23 @@ const Row = ({ data, rowID , renderData }) => {
     dispatch(deleteTodo(id)).then(() => dispatch(getTodos));
   };
 
- 
   return (
     <Box key={id} boxShadow={shadow} p="1" mb="20px">
       <Flex justifyContent="space-evenly">
-        <Center flex="1"><Text fontWeight="bold" >{rowID + 1}</Text> </Center>
-        <Center flex="4">{editShow ? <Text fontWeight="bold" > {title}</Text> : <Edit data={data} editShowData={editShowData} renderData={renderData}  />}</Center>
+        <Center flex="1">
+          <Text fontWeight="bold">{rowID + 1}</Text>{" "}
+        </Center>
+        <Center flex="4">
+          {editShow ? (
+            <Text  style={{textDecoration : data?.status ? "line-through" : ""}} fontWeight="bold"> {title}</Text>
+          ) : (
+            <Edit
+              data={data}
+              editShowData={editShowData}
+              renderData={renderData}
+            />
+          )}
+        </Center>
         <Center flex="2">
           <Button colorScheme="blue" onClick={() => editShowData()}>
             <EditIcon />
@@ -50,10 +61,9 @@ const Row = ({ data, rowID , renderData }) => {
         </Center>
         <Center flex="2">
           <Button colorScheme="red" onClick={() => handleDelete(id)}>
-          <DeleteIcon/>
+            <DeleteIcon />
           </Button>
         </Center>
-       
       </Flex>
     </Box>
   );

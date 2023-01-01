@@ -9,12 +9,14 @@ import TodoInput from "./TodoInput";
 
 const Todos = () => {
   const dispatch = useDispatch(); // when we call our function from action.js
-  const { todos, isLoading } = useSelector((store) => store); // when we need data from our store
-  const store = useSelector((store) => store); // when we need data from our store
-  console.log(store);
+  // const { todos, isLoading } = useSelector((store) => store); // when we need data from our store
+  // const store = useSelector((store) => store); // when we need data from our store
+  // console.log(store);
   // store is object and we can destructure
   // const isLoading = useSelector((store) => store.isLoading);
   // console.log(todos,isLoading)
+
+  const {todos , isLoading } = useSelector((store) => store) 
  
 
   useEffect(() => {
@@ -26,9 +28,8 @@ const Todos = () => {
     dispatch(getTodos);
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  if (isLoading) return <Loader />;
+  
 
   return (
     <Box>
