@@ -47,7 +47,7 @@ const Row = ({ data, rowID, renderData }) => {
           )}
         </Center>
         <Center flex="2">
-          <Button colorScheme="blue" onClick={() => editShowData()}>
+          <Button colorScheme="blue" onClick={() => editShowData()}>   
             <EditIcon />
           </Button>
         </Center>
