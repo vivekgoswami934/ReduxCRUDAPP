@@ -1,10 +1,10 @@
 import { Input } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateTodo } from "../Redux/action";
+import { getTodos, updateTodo } from "../Redux/action";
 
 const Edit = ({ data, editShowData, renderData }) => {
-  console.log(data, "vivek");
+  
   const dispatch = useDispatch();
   const [value, setValue] = useState(data.title);
 
@@ -13,7 +13,7 @@ const Edit = ({ data, editShowData, renderData }) => {
     const payload = { ...data, title: value };
     await dispatch(updateTodo(payload))
       .then(() => {
-        renderData();
+        dispatch(getTodos);
       })
       .then(() => editShowData());
   };

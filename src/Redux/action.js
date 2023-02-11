@@ -61,16 +61,6 @@ const statusTodoError = () => {
   };
 };
 
-/// clousers
-
-//  function outer(a){
-//   return function inner(b){
-//        return a+b
-//   }
-//  }
-
-//  outer(10)(4)
-
 const getTodos = (dispatch) => {
   console.log("gettods calling");
   dispatch(getTodosRequest()); // isLoadig  -> true
@@ -82,13 +72,13 @@ const getTodos = (dispatch) => {
     });
 };
 
-const addTodo = (payload) => (dispatch) => {
+const addTodo = (payload) => (dispatch) => {   // middleware --> thunk
   if (payload) {
     const payloadObj = {
       title: payload,
       status: false,
     };
-    dispatch(addTodoRequest());
+    dispatch(addTodoRequest());  // isLoading : -- true
     return axios
       .post(`${API_URL}`, payloadObj)
       .then((r) => {
@@ -99,14 +89,6 @@ const addTodo = (payload) => (dispatch) => {
       });
   }
 };
-
- // get post patch put delete
-
-//  {
- // id : 1
-//   key1 : 1
-//   status : 2
-//  }
 
 
 
@@ -127,6 +109,7 @@ const deleteTodo = (id) => async (dispatch) => {
   return await axios
     .delete(`${API_URL}/${id}`)
     .then((r) => {
+       getTodos()
       dispatch({ type: "delete_success" });
     })
     .catch((e) => {
@@ -134,17 +117,17 @@ const deleteTodo = (id) => async (dispatch) => {
     });
 };
 
-// const outer =>  (payload) => async (dispatch) = > {
-
-// }
 
 export const updateTodo = (payload) => async (dispatch) => {
   const { id } = payload;
-  console.log("chinta siva")
-  console.log("id at action", id);
+ 
   dispatch({ type: types.UPDATE_TODO_REQUEST });
+
   try {
+    
     const res = await axios.put(`${API_URL}/${id}`, payload);
+
+
     console.log(res);
     dispatch({ type: types.UPDATE_TODO_SUCCESS, payload: res.data });
   } catch (error) {
@@ -158,4 +141,9 @@ export const updateTodo = (payload) => async (dispatch) => {
 
 export { getTodos, addTodo, statusTodo, deleteTodo };
 
-//   promise.then()
+
+
+
+
+
+

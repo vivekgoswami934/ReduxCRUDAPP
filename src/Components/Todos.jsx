@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodos } from "../Redux/action";
 import Loader from "./Loader";
@@ -8,13 +9,7 @@ import Row from "./Row";
 import TodoInput from "./TodoInput";
 
 const Todos = () => {
-  const dispatch = useDispatch(); // when we call our function from action.js
-  // const { todos, isLoading } = useSelector((store) => store); // when we need data from our store
-  // const store = useSelector((store) => store); // when we need data from our store
-  // console.log(store);
-  // store is object and we can destructure
-  // const isLoading = useSelector((store) => store.isLoading);
-  // console.log(todos,isLoading)
+  const dispatch = useDispatch(); 
 
   const {todos , isLoading } = useSelector((store) => store) 
  
@@ -23,6 +18,7 @@ const Todos = () => {
     dispatch(getTodos);
     console.log("called");
   }, []);
+  
 
   const renderData = () => {
     dispatch(getTodos);
