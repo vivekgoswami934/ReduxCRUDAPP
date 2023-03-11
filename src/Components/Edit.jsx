@@ -7,9 +7,13 @@ const Edit = ({ data, editShowData, renderData }) => {
   
   const dispatch = useDispatch();
   const [value, setValue] = useState(data.title);
+
+
   const ref = useRef(null)
+
+
   const editFunction = async () => {
-    console.log(value);
+    // console.log(value);
     const payload = { ...data, title: value };
     await dispatch(updateTodo(payload))
       .then(() => {

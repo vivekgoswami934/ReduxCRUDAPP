@@ -6,6 +6,7 @@ import { addTodo, getTodos } from "../Redux/action";
 
 const TodoInput = () => {
   const [todo, setTodo] = useState("");
+  
   const dispatch = useDispatch();
 
   const handleAdd = () => {

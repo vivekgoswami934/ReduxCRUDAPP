@@ -79,8 +79,9 @@ const addTodo = (payload) => (dispatch) => {   // middleware --> thunk
       status: false,
     };
     dispatch(addTodoRequest());  // isLoading : -- true
+
     return axios
-      .post(`${API_URL}`, payloadObj)
+      .post(`${API_URL}`, payloadObj)    // db update
       .then((r) => {
         dispatch(addTodoSuccess());
       })
@@ -93,7 +94,7 @@ const addTodo = (payload) => (dispatch) => {   // middleware --> thunk
 
 
 const statusTodo = ({ id, status }) => (dispatch) => {
-    dispatch(statusTodoRequest());
+    dispatch({type: types.STATUS_TODO_REQUEST });
     return axios
       .patch(`${API_URL}/${id}`, { status: status })
       .then((r) => {
@@ -105,11 +106,13 @@ const statusTodo = ({ id, status }) => (dispatch) => {
   };
 
 const deleteTodo = (id) => async (dispatch) => {
+
   // dispatch({ type: "delete_request" });
+
+
   return await axios
     .delete(`${API_URL}/${id}`)
     .then((r) => {
-       getTodos()
       dispatch({ type: "delete_success" });
     })
     .catch((e) => {
@@ -126,9 +129,8 @@ export const updateTodo = (payload) => async (dispatch) => {
   try {
     
     const res = await axios.put(`${API_URL}/${id}`, payload);
-
-
     console.log(res);
+
     dispatch({ type: types.UPDATE_TODO_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: types.UPDATE_TODO_ERROR });
@@ -146,4 +148,15 @@ export { getTodos, addTodo, statusTodo, deleteTodo };
 
 
 
+// function outer(a){
 
+//   return function inner(b){           // closures
+//     return a+b
+//   }
+
+// outer()()()()()
+// }
+
+// const outer =() => () => {
+
+// }

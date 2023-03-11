@@ -20,11 +20,10 @@ const Todos = () => {
   }, []);
   
 
-  const renderData = () => {
-    dispatch(getTodos);
-  };
+  
 
-  if (isLoading) return <Loader />;
+
+  if(isLoading) return <Loader />;
   
 
   return (
@@ -40,7 +39,7 @@ const Todos = () => {
       {todos.length > 0 &&
         todos?.reverse().map((item, id) => {
           return (
-            <Row key={id} data={item} rowID={id} renderData={renderData} />
+            <Row key={id} data={item} rowID={id}  />
           );
         })}
     </Box>

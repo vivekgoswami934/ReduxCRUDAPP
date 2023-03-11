@@ -22,7 +22,8 @@ const Row = ({ data, rowID }) => {
   console.log("child render")
 
   const handleStatus = ({ id, status }) => {
-    let payload = { status: !status, id: id };
+    let payload = { status: !status, id };
+    
     dispatch(statusTodo(payload)).then(() => dispatch(getTodos));
   };
 
